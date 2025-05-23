@@ -20,7 +20,7 @@ export function usePlanet(): {
   setParamsBasedOnRoute: () => void,
   fetch: () => Promise<void>,
   setFilter: (name: string) => void,
-  setSort: (sort: SortOption) => void,
+  setSort: (sort: SortOption | null) => void,
   setPage: (page: number) => void
   } {
 
@@ -73,10 +73,13 @@ export function usePlanet(): {
     fetch();
   }
 
-  const setSort = (sort: SortOption): void => {
+  const setSort = (sort: SortOption | null): void => {
+    
     sortCriteria.value = sort;
-    sortList(sort);
-    updateQueryParams({ sort: sort.code });
+    if (sort) {
+      sortList(sort);
+    }
+    updateQueryParams({ sort: sort?.code || "" });
   }
   const sortList = (sorting: SortOption): void => {
     if (sorting.code === SortByDateOptionsEnum.NEWEST || sorting.code === SortByDateOptionsEnum.OLDEST) {
