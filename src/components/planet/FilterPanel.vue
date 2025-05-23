@@ -44,6 +44,7 @@ const clearFilters = () => {
   }
   setSearchedName("");
   selectedSortOption.value = null;
+  setSort(null);
   // const newQuery = { ...route.query };
   // delete newQuery.filter;
   // delete newQuery.sort;
