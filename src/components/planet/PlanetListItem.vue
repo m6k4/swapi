@@ -21,10 +21,10 @@ const getPlanetImage = (): string => {
       </div>
       <div class="PlanetListItem__details">
         <h2>{{ planet.getName() }}</h2>
-        <p>Created at: {{ planet.getCreated() }} km</p>
-        <p>Climate:{{ planet.getClimate() }}</p>
-        <p>Gravity: {{ planet.getGravity() }} km</p>
-        <p>Population: {{ planet.getPopulation() }} days</p>
+        <p>Created at: {{ planet.getCreated() }}</p>
+        <p>Climate: {{ planet.getClimate() }}</p>
+        <p>Gravity: {{ planet.getGravity() }}</p>
+        <p>Population: {{ planet.getPopulation() }}</p>
         <p>Rotation period: {{ planet.getRotationPeriod() }}</p>
         <p>
           Url:

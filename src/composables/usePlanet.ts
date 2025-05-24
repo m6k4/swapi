@@ -19,6 +19,7 @@ export function usePlanet(): {
   page: Ref<number>,
   setParamsBasedOnRoute: () => void,
   fetch: () => Promise<void>,
+  clearFilters: () => void,
   setFilter: (name: string) => void,
   setSort: (sort: SortOption | null) => void,
   setPage: (page: number) => void
@@ -59,6 +60,13 @@ export function usePlanet(): {
       });
   }
   
+  const clearFilters = (): void => {
+    filterCriteria.value = "";
+    sortCriteria.value = null;
+    page.value = 1;
+    updateQueryParams({ filter: "", sort: "", page: "1" });
+    fetch();
+  }
   const setPage = (newPage: number): void => {
     page.value = newPage;
     updateQueryParams({ page: `${newPage}` });
@@ -67,14 +75,12 @@ export function usePlanet(): {
 
   const setFilter = (filter: string): void => {
     filterCriteria.value = filter;
-    console.log(route.query, filter);
     page.value = 1;
     updateQueryParams({ filter, page: '1' });
     fetch();
   }
 
   const setSort = (sort: SortOption | null): void => {
-    
     sortCriteria.value = sort;
     if (sort) {
       sortList(sort);
@@ -131,6 +137,7 @@ export function usePlanet(): {
     page,
     setParamsBasedOnRoute,
     fetch,
+    clearFilters,
     setFilter,
     setSort,
     setPage,

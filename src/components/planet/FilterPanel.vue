@@ -7,7 +7,7 @@ import { planetsSortOptions } from "@/utils/constants";
 import { type SortOption } from "@/types/types";
 import { useRouter } from "vue-router";
 
-const { setFilter, setSort } = usePlanet();
+const { setFilter, setSort, clearFilters } = usePlanet();
 
 const router = useRouter();
 const searchBarRef = ref<InstanceType<typeof SearchBar> | null>(null);
@@ -38,19 +38,12 @@ const setSortOption = () => {
   }
 };
 
-const clearFilters = () => {
+const clearAllFilters = () => {
   if (searchBarRef.value) {
     searchBarRef.value.clearSearchedValue();
   }
-  setSearchedName("");
   selectedSortOption.value = null;
-  setSort(null);
-  // const newQuery = { ...route.query };
-  // delete newQuery.filter;
-  // delete newQuery.sort;
-  // router.push({
-  //   query: newQuery,
-  // });
+  clearFilters();
 };
 </script>
 
@@ -70,7 +63,7 @@ const clearFilters = () => {
       placeholder="Sort by:"
       @change="setSortOption()"
     />
-    <button class="FilterPanel__clear-button" @click="clearFilters()">
+    <button class="FilterPanel__clear-button" @click="clearAllFilters()">
       Clear
       <i class="pi pi-times" />
     </button>
@@ -102,6 +95,8 @@ const clearFilters = () => {
     background-color: $background-color;
     border-radius: 0.5rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 
     &:hover {
       background-color: $primary-hover-color;
@@ -117,12 +112,9 @@ const clearFilters = () => {
     gap: 1rem;
     width: 100%;
 
-    &__searchBar {
-      min-width: 50%;
-      width: 50%;
-    }
-
-    &__select {
+    &__searchBar,
+    &__select,
+    &__clear-button {
       min-width: 50%;
       width: 50%;
     }
@@ -131,12 +123,9 @@ const clearFilters = () => {
 
 @media screen and (max-width: 768px) {
   .FilterPanel {
-    &__searchBar {
-      min-width: 100%;
-      width: 100%;
-    }
-
-    &__select {
+    &__searchBar,
+    &__select,
+    &__clear-button {
       min-width: 100%;
       width: 100%;
     }

@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  width: 100%;
   position: absolute;
   top: 45%;
   left: 50%;
@@ -28,6 +28,14 @@
   .EmptyList {
     &__text {
       font-size: 4rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .EmptyList {
+    &__text {
+      font-size: 3rem;
     }
   }
 }
