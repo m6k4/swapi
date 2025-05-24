@@ -115,13 +115,24 @@ const clearAllFilters = () => {
     &__searchBar,
     &__select,
     &__clear-button {
-      min-width: 50%;
-      width: 50%;
+      width: 45rem;
+      min-width: 45rem;
     }
   }
 }
 
 @media screen and (max-width: 768px) {
+  .FilterPanel {
+    &__searchBar,
+    &__select,
+    &__clear-button {
+      width: 45rem;
+      min-width: 45rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
   .FilterPanel {
     &__searchBar,
     &__select,

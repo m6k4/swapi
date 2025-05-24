@@ -101,7 +101,6 @@ const getPlanetImage = (): string => {
 
 @media screen and (max-width: 768px) {
   .PlanetListItem {
-    width: 100%;
     margin: 3rem 0;
   }
 }
