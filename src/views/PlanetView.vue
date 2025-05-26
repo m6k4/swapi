@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import FilterPanel from "@/components/planet/FilterPanel.vue";
 import PlanetList from "@/components/planet/PlanetList.vue";
-import CommonPagination from "@/components/common/CommonPagination.vue";
+import CommonPagination from "@/components/platform/CommonPagination.vue";
 import { usePlanet } from "@/composables/usePlanet";
 import Toast from "primevue/toast";
-import MusicPlayer from "@/components/common/SoundControl.vue";
-import InitialLoader from "@/components/common/InitialLoader.vue";
-import SpaceBackground from "@/components/common/SpaceBackground.vue";
+import MusicPlayer from "@/components/platform/SoundControl.vue";
+import InitialLoader from "@/components/platform/InitialLoader.vue";
+import SpaceBackground from "@/components/platform/SpaceBackground.vue";
 
 const { planetsCount, page, fetch, setPage, setParamsBasedOnRoute } =
   usePlanet();
@@ -30,7 +30,7 @@ const changePage = (newPage: number) => {
       <PlanetList />
     </div>
     <CommonPagination
-      v-if="planetsCount >= 10"
+      v-if="planetsCount > 10"
       class="PlatformView__pagination"
       :total-items="planetsCount"
       :current-page="page"

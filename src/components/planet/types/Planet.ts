@@ -2,7 +2,6 @@ import type { PlanetDTO } from "@/types/types";
 import dayjs from "dayjs";
 
 export default class Planet {
-
   constructor(
     private readonly name: string,
     private readonly population: string,

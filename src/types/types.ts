@@ -8,19 +8,15 @@ export interface PlanetDTO {
   url: string;
 }
 
-export enum SortByDateOptionsEnum {
+export enum SortByDateOptions {
   NEWEST = 'newest',
   OLDEST = 'oldest',
 }
 
-export enum SortByNameOptionsEnum {
+export enum SortByNameOptions {
   A_TO_Z = 'a_to_z',
   Z_TO_A = 'z_to_a',
 }
-
-export type SortByDateOptions = `${SortByDateOptionsEnum}`;
-export type SortByNameOptions = `${SortByNameOptionsEnum}`;
-
 
 export interface SortOption {
   sort: string;

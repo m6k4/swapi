@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PlanetListItem from "@/components/planet/PlanetListItem.vue";
-import EmptyList from "@/components/common/EmptyList.vue";
+import EmptyList from "@/components/platform/EmptyList.vue";
 import { usePlanet } from "@/composables/usePlanet";
 
 const { planets } = usePlanet();

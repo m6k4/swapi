@@ -1,5 +1,5 @@
 import { computed, ref, type Ref } from 'vue';
-import  { type PlanetDTO, type SortByDateOptions, type SortByNameOptions, type SortOption,  SortByDateOptionsEnum, SortByNameOptionsEnum } from '@/types/types';
+import  { type PlanetDTO, type SortOption,  SortByDateOptions, SortByNameOptions } from '@/types/types';
 import Planet from '@/components/planet/types/Planet';
 import http from "@/utils/http";
 import dayjs from 'dayjs';
@@ -88,9 +88,9 @@ export function usePlanet(): {
     updateQueryParams({ sort: sort?.code || "" });
   }
   const sortList = (sorting: SortOption): void => {
-    if (sorting.code === SortByDateOptionsEnum.NEWEST || sorting.code === SortByDateOptionsEnum.OLDEST) {
+    if (sorting.code === SortByDateOptions.NEWEST || sorting.code === SortByDateOptions.OLDEST) {
       sortByDate(sorting.code);
-    } else if (sorting.code === SortByNameOptionsEnum.A_TO_Z || sorting.code === SortByNameOptionsEnum.Z_TO_A) {
+    } else if (sorting.code === SortByNameOptions.A_TO_Z || sorting.code === SortByNameOptions.Z_TO_A) {
       sortByName(sorting.code);
     }
   }
@@ -100,7 +100,7 @@ export function usePlanet(): {
       const dateA = dayjs(a.getCreated(), 'DD/MM/YYYY');
         const dateB = dayjs(b.getCreated(), 'DD/MM/YYYY'); 
 
-      if (sortDirection === SortByDateOptionsEnum.OLDEST) {
+      if (sortDirection === SortByDateOptions.OLDEST) {
         return dateB.isAfter(dateA) ? 1 : -1; 
       } else {
         return dateA.isAfter(dateB) ? 1 : -1;
@@ -112,7 +112,7 @@ export function usePlanet(): {
     planets.value.sort((a, b) => {
       const nameA = a.getName().toLowerCase();
       const nameB = b.getName().toLowerCase();
-      if (sortDirection === SortByNameOptionsEnum.A_TO_Z) {
+      if (sortDirection === SortByNameOptions.A_TO_Z) {
         return nameA.localeCompare(nameB);
       } else {
         return nameB.localeCompare(nameA);

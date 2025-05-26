@@ -1,8 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => {
+
+  process.env = {...process.env, ...loadEnv(mode, process.cwd())};
+
+  return {
   plugins: [vue()],
   css: {
     preprocessorOptions: {
@@ -19,10 +22,11 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://swapi.dev', 
+        target: process.env.VITE_BASE_API,
         changeOrigin: true,
         secure: false, 
       },
     },
   },
+}
 })
