@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
   server: {
     proxy: {
       '/api': {
-        target: process.env.VITE_BASE_API,
+        target: "https://swapi.dev",
         changeOrigin: true,
         secure: false, 
       },
