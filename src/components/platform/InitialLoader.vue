@@ -5,7 +5,7 @@
       'InitialLoader--hide-loader': isHidden,
     }"
   >
-    <button v-if="!showLoadingContainer" @click.prevent="showLoading()">
+    <button v-if="!showLoadingContainer" @click="showLoading()">
       Go to the dark side
     </button>
     <div v-else class="InitialLoader__loading-container">

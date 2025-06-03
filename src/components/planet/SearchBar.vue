@@ -17,7 +17,8 @@ watch(
 );
 
 const handleSearch = () => {
-  emit("search", searchedValue.value);
+  const trimmedValue = searchedValue.value.replace(/\s/g, "");
+  emit("search", trimmedValue);
 };
 
 const clearSearchedValue = () => {

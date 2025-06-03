@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
-import router from './router'; // Adjust the path as necessary
+import router from './router';
 import '@/assets/styles/style.scss';
 import dayjs from 'dayjs'
 import interceptor from "@/config/interceptor";

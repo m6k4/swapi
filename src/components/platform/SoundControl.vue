@@ -6,15 +6,10 @@ const { isMuted, toggleSound } = useSoundControl();
 <template>
   <div class="SoundControl">
     <i
-      v-if="isMuted"
-      class="SoundControl__icon pi pi-volume-off"
+      class="SoundControl__icon pi"
+      :class="{ 'pi-volume-off': isMuted, 'pi-volume-up': !isMuted }"
       @click="toggleSound()"
-    ></i>
-    <i
-      v-else
-      class="SoundControl__icon pi pi-volume-up"
-      @click="toggleSound()"
-    ></i>
+    />
   </div>
 </template>
 <style scoped lang="scss">

@@ -9,13 +9,9 @@ const { planets } = usePlanet();
 <template>
   <div class="PlanetList">
     <div class="PlanetList__container">
-      <EmptyList v-if="planets.length === 0" />
+      <EmptyList v-if="!planets.length" />
       <div v-else class="PlanetList__elements">
-        <PlanetListItem
-          v-for="planet in planets"
-          :key="planet.getName()"
-          :planet="planet"
-        />
+        <PlanetListItem v-for="planet in planets" :key="planet.name" :planet />
       </div>
     </div>
   </div>

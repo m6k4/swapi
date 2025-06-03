@@ -1,5 +1,5 @@
-import { computed, ref, type Ref } from 'vue';
-import  { type PlanetDTO, type SortOption,  SortByDateOptions, SortByNameOptions } from '@/types/types';
+import { ref, type Ref } from 'vue';
+import  { type RequestInterface, type SortOption,  SortByDateOptions, SortByNameOptions } from '@/types/types';
 import Planet from '@/components/planet/types/Planet';
 import http from "@/utils/http";
 import dayjs from 'dayjs';
@@ -40,17 +40,19 @@ export function usePlanet(): {
 
   const fetch = async (): Promise<void> => {
     await http
-      .get(`/planets/${parseFilterOption()}page=${page.value}`)
+      .get<RequestInterface>(`/planets/${parseFilterOption()}page=${page.value}`)
       .then((response) => {
         const data = response.data;
         planetsCount.value = data.count;
-        const results = data.results as PlanetDTO[];
+        const results = data.results;
+        
 
         if(!results) {
           return;
         }
       
         planets.value = results.map((planet) => Planet.fromDTO(planet));
+
         if (sortCriteria.value) {
           sortList(sortCriteria.value);
         }
@@ -110,8 +112,8 @@ export function usePlanet(): {
 
   const sortByName = (sortDirection: SortByNameOptions): void => {
     planets.value.sort((a, b) => {
-      const nameA = a.getName().toLowerCase();
-      const nameB = b.getName().toLowerCase();
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
       if (sortDirection === SortByNameOptions.A_TO_Z) {
         return nameA.localeCompare(nameB);
       } else {
@@ -120,7 +122,7 @@ export function usePlanet(): {
     });
   }
 
-  const parseFilterOption = (): string => {
+  const parseFilterOption = () => {
     if (!filterCriteria.value) {
       return '?';
     }
@@ -132,8 +134,8 @@ export function usePlanet(): {
   };
 
   return {
-    planets: computed(() => planets.value as Planet[]),
-    planetsCount: computed(() => planetsCount.value),
+    planets,
+    planetsCount,
     page,
     setParamsBasedOnRoute,
     fetch,

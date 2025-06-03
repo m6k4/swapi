@@ -1,3 +1,9 @@
+export interface RequestInterface {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: PlanetDTO[];
+}
 export interface PlanetDTO {
   name: string;
   population: string;

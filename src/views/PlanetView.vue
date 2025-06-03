@@ -45,7 +45,6 @@ const changePage = (newPage: number) => {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  min-height: 100svh;
   padding: 6rem 8rem;
 
   &__content {

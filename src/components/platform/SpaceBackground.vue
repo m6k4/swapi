@@ -13,14 +13,16 @@
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
+  animation: slowlyZoom 60s linear;
+  animation-fill-mode: forwards;
 }
 
-@keyframes rotate {
+@keyframes slowlyZoom {
   0% {
-    transform: rotate(0deg);
+    transform: scale(1);
   }
   100% {
-    transform: rotate(360deg);
+    transform: scale(1.8);
   }
 }
 </style>

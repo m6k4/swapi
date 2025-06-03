@@ -6,10 +6,8 @@ const props = defineProps<{
 }>();
 
 const getPlanetImage = (): string => {
-  return new URL(
-    `../../assets/img/${props.planet.getImageName()}`,
-    import.meta.url,
-  ).href;
+  return new URL(`../../assets/img/${props.planet.imageName}`, import.meta.url)
+    .href;
 };
 </script>
 
@@ -17,19 +15,19 @@ const getPlanetImage = (): string => {
   <div class="PlanetListItem">
     <div class="PlanetListItem__container">
       <div class="PlanetListItem__image">
-        <img :src="getPlanetImage()" :alt="planet.getName()" />
+        <img :src="getPlanetImage()" :alt="planet.name" />
       </div>
       <div class="PlanetListItem__details">
-        <h2>{{ planet.getName() }}</h2>
+        <h2>{{ planet.name }}</h2>
         <p>Created at: {{ planet.getCreated() }}</p>
-        <p>Climate: {{ planet.getClimate() }}</p>
-        <p>Gravity: {{ planet.getGravity() }}</p>
-        <p>Population: {{ planet.getPopulation() }}</p>
-        <p>Rotation period: {{ planet.getRotationPeriod() }}</p>
+        <p>Climate: {{ planet.climate }}</p>
+        <p>Gravity: {{ planet.gravity }}</p>
+        <p>Population: {{ planet.population }}</p>
+        <p>Rotation period: {{ planet.rotation_period }}</p>
         <p>
           Url:
-          <a :href="planet.getUrl()" target="_blank">
-            {{ planet.getUrl() }}
+          <a :href="planet.url" target="_blank">
+            {{ planet.url }}
           </a>
         </p>
       </div>

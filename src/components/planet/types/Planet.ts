@@ -1,18 +1,19 @@
 import type { PlanetDTO } from "@/types/types";
 import dayjs from "dayjs";
 
-export default class Planet {
-  constructor(
-    private readonly name: string,
-    private readonly population: string,
-    private readonly rotation_period: string,
-    private readonly climate: string,
-    private readonly gravity: string,
-    private readonly created: string,
-    private readonly url: string,
-    private readonly imageName: string
-  ) {}
-
+  
+export default class Planet{
+  private constructor(
+    readonly name: string,
+    readonly population: string,
+    readonly rotation_period: string,
+    readonly climate: string,
+    readonly gravity: string,
+    readonly created: string,
+    readonly url: string,
+    readonly imageName: string
+  ) { 
+  }
 
   static fromDTO(planetDTO: PlanetDTO): Planet {
     return new Planet(
@@ -25,9 +26,8 @@ export default class Planet {
       planetDTO.url,
       this.generateImageName(planetDTO.name)
     );
-    
   }
-
+ 
   private static generateImageName(name: string) {
     let planetNumber = 1;
 
@@ -42,36 +42,8 @@ export default class Planet {
     return `planet${planetNumber}.png`;
   }
 
-  getName(): string {
-    return this.name;
-  }
-
-  getPopulation(): string {
-    return this.population;
-  }
-
-  getRotationPeriod(): string {
-    return this.rotation_period;
-  }
-
-  getClimate(): string {
-    return this.climate;
-  }
-
-  getGravity(): string {
-    return this.gravity;
-  }
-
   getCreated(): string {
     return dayjs(this.created).format("YYYY-MM-DD HH:mm:ss");
-  }
-
-  getUrl(): string {
-    return this.url;
-  }
-
-  getImageName(): string {
-    return this.imageName;
   }
 
 }
